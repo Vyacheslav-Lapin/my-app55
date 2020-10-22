@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redux</title>
+
+    <script src="https://unpkg.com/redux@latest/dist/redux.js"></script>
+
+</head>
+<body>
+    <script>
+        const addElement = value => ({type: "add", value});
+        const removeElement = value => ({type: "remove", value});
+
+        function reducer(state = [], action) {
+            switch (action.type) {
+                case "add": return state.concat(action.value);
+                case "remove": return state.filter(elem => elem !== action.value);
+                default: return state;
+            }
+        }
+
+        const store = Redux.createStore(reducer);
+        store.subscribe(() => console.log(store.getState()))
+        // store.subscribe(state => console.log(state.getState()));
+
+        store.dispatch(addElement("lorem"));
+        store.dispatch(addElement("ipsum"));
+        store.dispatch(addElement("sit"));
+        store.dispatch(addElement("amet"));
+        store.dispatch(removeElement("sit"));
+    </script>
+</body>
+</html>
