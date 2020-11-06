@@ -2,16 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Main from "./components/Main";
+// import Main from "./components/Main";
+import {createStore} from "redux";
+import reducer from "./reducers"
+import {Provider} from "react-redux";
+import App from "./components/App"
+// import TodoList from "./components/TodoList";
 
-// const store = createStore(counter);
-    // <React.StrictMode>
-    //     <Provider {...{store}}>
-    //     <App/>
-    //     <TodoList/>
-ReactDOM.render(<Main/>, document.getElementById('root'));
-        // {/*</Provider>*/}
-    // </React.StrictMode>
+const store = createStore(reducer);
+ReactDOM.render(
+    // <Main/>
+    <React.StrictMode>
+         <Provider {...{store}}>
+         <App/>
+         {/*<TodoList/>*/}
+         </Provider>
+     </React.StrictMode>
+    , document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -12,17 +12,17 @@
         const addElement = value => ({type: "add", value});
         const removeElement = value => ({type: "remove", value});
 
-        function reducer(state = [], action) {
+        const reducer = (state = [], action) => {
             switch (action.type) {
                 case "add": return state.concat(action.value);
                 case "remove": return state.filter(elem => elem !== action.value);
                 default: return state;
             }
-        }
+        };
 
         const store = Redux.createStore(reducer);
-        store.subscribe(() => console.log(store.getState()))
-        // store.subscribe(state => console.log(state.getState()));
+        store.subscribe(() => console.log(store.getState()));
+     // store.subscribe(state => console.log(state.getState()));
 
         store.dispatch(addElement("lorem"));
         store.dispatch(addElement("ipsum"));
